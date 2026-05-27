@@ -5,11 +5,12 @@ import numpy as np
 import streamlit as st
 
 BASE_DIR = Path(__file__).resolve().parent
+MODEL_DIR = BASE_DIR / "models"
 MODEL_FILES = {
-    "lr_model": BASE_DIR / "linear_regression_model.pkl",
-    "scaler_lr": BASE_DIR / "scaler_lr.pkl",
-    "nb_model": BASE_DIR / "naive_bayes_model.pkl",
-    "scaler_nb": BASE_DIR / "scaler_nb.pkl",
+    "lr_model": MODEL_DIR / "linear_regression_model.pkl",
+    "scaler_lr": MODEL_DIR / "scaler_lr.pkl",
+    "nb_model": MODEL_DIR / "naive_bayes_model.pkl",
+    "scaler_nb": MODEL_DIR / "scaler_nb.pkl",
 }
 
 st.set_page_config(
@@ -28,7 +29,7 @@ def load_models():
         return lr_model, scaler_lr, nb_model, scaler_nb
     except FileNotFoundError as exc:
         st.error(
-            ":material/warning: File model tidak ditemukan. Pastikan semua .pkl berada di folder yang sama dengan app.py."
+            ":material/warning: File model tidak ditemukan. Pastikan folder 'models/' berisi file .pkl yang diperlukan."
         )
         st.stop()
 
